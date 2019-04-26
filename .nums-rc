@@ -23,7 +23,7 @@ defn fhr2 from-human-readable --field=2
 defn fhr3 from-human-readable --field=3
 
 alias hsum="from-human-readable | sum | to-human-readable"
-alias hs="from-human-readable | sum | to-human-readable"
+alias hrs="from-human-readable | sum | to-human-readable"
 
 defn prn parse-number
 defn psn parse-number

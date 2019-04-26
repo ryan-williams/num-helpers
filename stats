@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+
+import fileinput
+import math
+
+n = 0
+sum = 0
+sum_sqs = 0
+for line in fileinput.input():
+	num = int(line)
+	sum += num
+	sum_sqs += num * num
+	n += 1
+
+mean = sum / n
+stddev = math.sqrt(sum_sqs / n - mean * mean)
+print("n: %d, mean: %f, stddev: %f" % (n, mean, stddev))
+
