@@ -10,29 +10,32 @@ alias hx="hexdump -C"
 alias hxn="hexdump -C -n"
 alias hxd=hexdump
 
-defn thr to-human-readable
-defn thr2 to-human-readable --field=2
-defn thr3 to-human-readable --field=3
+to_human_readable() {
+    numfmt --to=iec "$@"
+}
+export -f to_human_readable
+from_human_readable() {
+    numfmt --from=iec "$@"
+}
+export -f from_human_readable
 
-defn hr to-human-readable
-defn hr2 to-human-readable --field=2
-defn hr3 to-human-readable --field=3
+defn thr to_human_readable
+defn thr2 to_human_readable --field=2
+defn thr3 to_human_readable --field=3
 
-defn fhr from-human-readable
-defn fhr2 from-human-readable --field=2
-defn fhr3 from-human-readable --field=3
+defn hr to_human_readable
+defn hr2 to_human_readable --field=2
+defn hr3 to_human_readable --field=3
 
-alias hsum="from-human-readable | sum | to-human-readable"
-alias hrs="from-human-readable | sum | to-human-readable"
+defn fhr from_human_readable
+defn fhr2 from_human_readable --field=2
+defn fhr3 from_human_readable --field=3
 
 defn prn parse-number
 defn psn parse-number
-
-alias sml="sum -l"
 
 defn ordx ord -x
 defn ox ord -x
 
 defn cr chr
 defn cx chr -x
-
