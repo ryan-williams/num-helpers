@@ -5,7 +5,7 @@ handle_arg() {
   if ! [[ "$arg" =~ ^0x ]]; then
     arg="0x$arg"
   fi
-  js "parseInt($arg).toString()"
+  python -c "print(int($arg))"
 }
 
 if [ $# -eq 0 ]; then
