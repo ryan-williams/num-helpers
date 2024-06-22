@@ -44,3 +44,5 @@ defn hex2dec unhex
 defn h2d unhex
 defn dec2hex hex
 defn d2h hex
+
+defn pows pow-range.py
