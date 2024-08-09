@@ -46,3 +46,10 @@ defn dec2hex hex
 defn d2h hex
 
 defn pows pow-range.py
+
+defn b64d base64 -d
+defn b64 base64
+defn b64e base64
+defn bxd base64 -d
+defn bx base64
+defn bxe base64
