@@ -10,6 +10,13 @@ alias hx="hexdump -C"
 alias hxn="hexdump -C -n"
 alias hxd=hexdump
 
+hexdump_4x8() {
+    hexdump -v -e '"%08_ax  " 8/1 "%02x " "  " 8/1 "%02x " "  " 8/1 "%02x " "  " 8/1 "%02x " " |"' -e '32/1 "%_p" "|\n"' "$@"
+}
+export -f hexdump_4x8
+defn hx32 hexdump_4x8
+defn hx2 hexdump_4x8
+
 to_human_readable() {
     numfmt --to=iec "$@"
 }
