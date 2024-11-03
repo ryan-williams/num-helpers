@@ -53,3 +53,15 @@ defn b64e base64
 defn bxd base64 -d
 defn bx base64
 defn bxe base64
+
+seqz() {
+    n="$1"; shift
+    fmt="%0${n}d"
+    for i in $(seq "$@"); do
+        printf "$fmt\n" "$i"
+    done
+}
+export -f seqz
+defn sqz seqz
+defn sq2 seqz 2
+defn sq3 seqz 3
