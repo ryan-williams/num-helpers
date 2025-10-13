@@ -11,6 +11,11 @@ defn hxn hexdump -Cn
 defn hxs hexdump -Cs
 defn hxd hexdump
 
+defn hxt hxtail
+defn hxt128 hxtail -n 128
+defn hxt256 hxtail -n 256
+defn hxt512 hxtail -n 512
+
 hexdump_4x8() {
     hexdump -v -e '"%08_ax  " 8/1 "%02x " "  " 8/1 "%02x " "  " 8/1 "%02x " "  " 8/1 "%02x " " |"' -e '32/1 "%_p" "|\n"' "$@"
 }

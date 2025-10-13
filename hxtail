@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Show the last N bytes of a file in hexdump format
+
+n=256  # default: last 256 bytes
+fmt="-C"  # default format
+
+while [[ "$1" =~ ^- ]]; do
+    case "$1" in
+        -n)
+            n="$2"
+            shift 2
+            ;;
+        -s|-C|-Cs|-Cn)
+            fmt="$1"
+            shift
+            ;;
+        *)
+            echo "Unknown option: $1" >&2
+            exit 1
+            ;;
+    esac
+done
+
+for file in "$@"; do
+    if [[ ! -f "$file" ]]; then
+        echo "Error: $file not found or not a file" >&2
+        continue
+    fi
+
+    size=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
+    if [[ -z "$size" ]]; then
+        echo "Error: Cannot get size of $file" >&2
+        continue
+    fi
+
+    if [[ $size -le $n ]]; then
+        # File is smaller than requested size, show the whole file
+        hexdump $fmt "$file"
+    else
+        # Skip to the last N bytes
+        offset=$((size - n))
+        hexdump $fmt -s "$offset" "$file"
+    fi
+done
